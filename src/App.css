@@ -1,0 +1,175 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+}
+.Container {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  height: 100vh;
+}
+.side-img img {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  object-fit: cover;
+  background-repeat: no-repeat;
+}
+.Content {
+  padding: 30px;
+}
+.titles h1 {
+  font-size: 2.2rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.titles span {
+  color: #01897b;
+}
+.text {
+  margin: 15px 0;
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgb(56, 56, 56);
+}
+.form-container {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 30px;
+}
+.task-input {
+  flex-basis: 85%;
+}
+.select-input,
+.task-btn {
+  flex-basis: 15%;
+}
+input,
+select {
+  width: 100%;
+  font-weight: 500;
+  height: 100%;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  border: none;
+  border-bottom: 2px solid #01897b;
+  background-color: rgb(241, 241, 241);
+}
+.Add-btn {
+  width: 100%;
+  height: 100%;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  border: none;
+  background-color: #01897b;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 500;
+}
+/* ==================== result ================= */
+.result-content {
+  padding: 30px 20px;
+  background-color: rgb(241, 241, 241);
+}
+
+/* =========== Nav bar */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+  margin-right: 5px;
+}
+
+li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: 0.4s ease-in-out;
+}
+li::after {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 3px;
+  background-color: #01897b;
+}
+.active {
+  background-color: #01897b;
+  color: #fff;
+}
+
+li a:hover {
+  background-color: #01897b;
+  color: white;
+}
+nav {
+  margin-bottom: 20px;
+}
+
+/* ================================ */
+.item {
+  background-color: white;
+  display: flex;
+  gap: 8px;
+  height: 50px;
+  padding: 5px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.task-nbr {
+  flex-basis: 5%;
+}
+.action {
+  flex-basis: 15%;
+}
+.task-name {
+  flex-basis: 80%;
+}
+.task-nbr {
+  background-color: rgb(241, 241, 241);
+  color: black;
+  display: block;
+  font-size: 1.2rem;
+  padding: 10px 16px;
+  text-align: center;
+}
+.task-name {
+  padding: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.action {
+  display: flex;
+  gap: 8px;
+}
+
+.Action-btn {
+  font-size: 16px;
+  background-color: rgb(241, 241, 241);
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  height: 100%;
+  padding: 10px 16px;
+}
+#edit {
+  color: dodgerblue;
+}
+#delete {
+  color: crimson;
+}
+@media screen and (max-width: 769px) {
+  .Container {
+    grid-template-columns: 1fr;
+  }
+}
