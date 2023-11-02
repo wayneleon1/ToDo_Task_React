@@ -1,6 +1,48 @@
+import axios from "axios";
 import Item from "./Items";
+import { useState, useEffect } from "react";
 import React from "react";
 export const TodoWrapper = () => {
+  // =================== fetching tasks from Api ===================
+  const [tasks, setTasks] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get(
+          "https://to-do-list-5c5x.onrender.com/To_Do_List/selectTask"
+        );
+        const data = response.data.data;
+        setTasks(data);
+        console.log(data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, []);
+  // =================== Adding Tasks to Api ====================
+  const [duration, setDuration] = useState("");
+  const [inputTask, setInputTask] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const result = await axios.post(
+        "https://to-do-list-5c5x.onrender.com/To_Do_List/addTask",
+        {
+          duration: duration,
+          task: inputTask,
+        }
+      );
+      alert("Task Added successfully");
+      setDuration("");
+      setInputTask("");
+      console.log(result.data);
+    } catch (err) {
+      errors();
+      console.error(err);
+    }
+  };
   return (
     <div className="Container">
       <div className="side-img">
@@ -22,19 +64,31 @@ export const TodoWrapper = () => {
             <br /> have the perfect place for you.
           </p>
         </div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="form-container">
             <div className="select-input">
-              <select name="">
-                <option value="">Duration</option>
-                <option value="">Daily</option>
-                <option value="">Weekly</option>
-                <option value="">Monthly</option>
-                <option value="">Yearly</option>
+              <select
+                value={duration}
+                onChange={(e) => {
+                  setDuration(e.target.value);
+                }}
+              >
+                <option value="Duration">Duration</option>
+                <option value="Daily">Daily</option>
+                <option value="Weekly">Weekly</option>
+                <option value="Monthly">Monthly</option>
+                <option value="Yearly">Yearly</option>
               </select>
             </div>
             <div className="task-input">
-              <input type="text" placeholder="Task" />
+              <input
+                type="text"
+                value={inputTask}
+                placeholder="Task"
+                onChange={(e) => {
+                  setInputTask(e.target.value);
+                }}
+              />
             </div>
             <div className="task-btn">
               <button className="Add-btn" type="submit">
@@ -47,27 +101,33 @@ export const TodoWrapper = () => {
           <nav>
             <ul>
               <li>
-                <a href="" className="active">
+                <a href="#" className="active">
                   All
                 </a>
               </li>
               <li>
-                <a href="">Daily</a>
+                <a href="#">Daily</a>
               </li>
               <li>
-                <a href="">Weekly</a>
+                <a href="#">Weekly</a>
               </li>
               <li>
-                <a href="">Monthly</a>
+                <a href="#">Monthly</a>
               </li>
               <li>
-                <a href="">Yearly</a>
+                <a href="#">Yearly</a>
               </li>
             </ul>
           </nav>
-          <Item />
-          <Item />
-          <Item />
+          {tasks.map((item, index) => (
+            <Item
+              key={index}
+              nbr={index + 1}
+              id={item._id}
+              task={item.task}
+              duration={item.duration}
+            />
+          ))}
         </div>
       </div>
     </div>

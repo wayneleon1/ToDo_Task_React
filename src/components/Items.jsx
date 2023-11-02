@@ -1,22 +1,25 @@
 import React from "react";
-export default function Item() {
+import { Icon } from "@iconify/react";
+export default function Item({ nbr, task, duration }) {
   return (
     <div className="item">
       <div className="task-nbr">
-        <h5>1</h5>
+        <h5>{nbr}</h5>
       </div>
       <div className="task-name">
-        <p>Learn React</p>
+        <p>
+          {task} / <span>{duration}</span>
+        </p>
       </div>
       <div className="action">
         <div>
           <button id="edit" className="Action-btn">
-            Edit
+            <Icon icon="mingcute:edit-line" />
           </button>
         </div>
         <div>
           <button id="delete" className="Action-btn">
-            Delete
+            <Icon icon="material-symbols:delete-outline" />
           </button>
         </div>
       </div>

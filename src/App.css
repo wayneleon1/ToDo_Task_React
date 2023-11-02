@@ -1,4 +1,6 @@
-* {
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
@@ -10,6 +12,7 @@
   height: 100vh;
 }
 .side-img img {
+  display: block;
   width: 100%;
   height: 100%;
   background-position: center;
@@ -92,7 +95,7 @@ li a {
   display: block;
   color: black;
   text-align: center;
-  padding: 14px 16px;
+  padding: 10px 16px;
   text-decoration: none;
   transition: 0.4s ease-in-out;
 }
@@ -148,19 +151,25 @@ nav {
   font-size: 0.9rem;
   font-weight: 500;
 }
+.task-name span {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 500;
+}
 .action {
   display: flex;
   gap: 8px;
+  justify-content: flex-end;
 }
 
 .Action-btn {
-  font-size: 16px;
+  font-size: 20px;
   background-color: rgb(241, 241, 241);
   border: none;
   cursor: pointer;
   font-weight: 500;
   height: 100%;
-  padding: 10px 16px;
+  padding: 8px;
 }
 #edit {
   color: dodgerblue;
