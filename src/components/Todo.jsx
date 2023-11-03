@@ -5,21 +5,22 @@ import React from "react";
 export const TodoWrapper = () => {
   // =================== fetching tasks from Api ===================
   const [tasks, setTasks] = useState([]);
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await axios.get(
-          "https://to-do-list-5c5x.onrender.com/To_Do_List/selectTask"
-        );
-        const data = response.data.data;
-        setTasks(data);
-        console.log(data);
-      } catch (error) {
-        console.error(error);
-      }
+
+  async function fetchData() {
+    try {
+      const response = await axios.get(
+        "https://to-do-list-5c5x.onrender.com/To_Do_List/selectTask"
+      );
+      const data = response.data.data;
+      setTasks(data);
+    } catch (error) {
+      console.error(error);
     }
+  }
+  useEffect(() => {
     fetchData();
   }, []);
+
   // =================== Adding Tasks to Api ====================
   const [duration, setDuration] = useState("");
   const [inputTask, setInputTask] = useState("");
@@ -38,11 +39,12 @@ export const TodoWrapper = () => {
       setDuration("");
       setInputTask("");
       console.log(result.data);
+      fetchData();
     } catch (err) {
-      errors();
-      console.error(err);
+      console.log(err);
     }
   };
+
   return (
     <div className="Container">
       <div className="side-img">
@@ -122,10 +124,11 @@ export const TodoWrapper = () => {
           {tasks.map((item, index) => (
             <Item
               key={index}
-              nbr={index + 1}
-              id={item._id}
+              count={index + 1}
+              ID={item._id}
               task={item.task}
               duration={item.duration}
+              display={fetchData()}
             />
           ))}
         </div>
