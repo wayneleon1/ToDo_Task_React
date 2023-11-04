@@ -2,7 +2,22 @@ import axios from "axios";
 import Item from "./Items";
 import { useState, useEffect } from "react";
 import React from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export const TodoWrapper = () => {
+  const success = () => {
+    toast.success("Task Added successfully", {
+      position: "top-center",
+      autoClose: 3500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   // =================== fetching tasks from Api ===================
   const [tasks, setTasks] = useState([]);
 
@@ -35,7 +50,7 @@ export const TodoWrapper = () => {
           task: inputTask,
         }
       );
-      alert("Task Added successfully");
+      success();
       setDuration("");
       setInputTask("");
       console.log(result.data);
@@ -133,6 +148,7 @@ export const TodoWrapper = () => {
           ))}
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

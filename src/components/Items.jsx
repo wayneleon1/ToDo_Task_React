@@ -1,7 +1,21 @@
 import React from "react";
 import axios from "axios";
 import { Icon } from "@iconify/react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function Item({ ID, count, task, duration, display }) {
+  const success = () => {
+    toast.success("Task has delete successfully", {
+      position: "top-center",
+      autoClose: 3500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
   // ================== delete function =====================
   async function handleDelete(id) {
     const conf = window.confirm("Do you want to delete this task");
@@ -10,7 +24,7 @@ export default function Item({ ID, count, task, duration, display }) {
         const response = await axios.delete(
           `https://to-do-list-5c5x.onrender.com/To_Do_List/deleteTask/${id}`
         );
-        alert("Task has delete successfully");
+        success();
         {
           display;
         }
@@ -47,6 +61,7 @@ export default function Item({ ID, count, task, duration, display }) {
           </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }
